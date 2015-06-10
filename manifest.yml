@@ -2,4 +2,4 @@
 applications:
 - name: ci-test-app-jonas
   memory: 128M
-  command: python hello.py
+  command: python hello_redis.py
