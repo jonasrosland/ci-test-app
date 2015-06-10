@@ -2,3 +2,4 @@
 applications:
 - name: ci-test-app-jonas
   memory: 512M
+  command: python hello.py
