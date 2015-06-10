@@ -1,21 +1,11 @@
-import flask
-import redis
+from flask import Flask
 import os
-import urlparse
-import json
 
-
-app = flask(__name__)
-rediscloud_service = json.loads(os.environ['VCAP_SERVICES'])['rediscloud'][0]
-credentials = rediscloud_service['credentials']
-r = redis.Redis(host=credentials['hostname'], port=credentials['port'], password=credentials['password'])
+app = Flask(__name__)
 
 @app.route('/')
 def hello():
-   r.incr('hits')
-#   return 'Hello World!'
-   return 'Hello World! I have been seen %s times.\n' % r.get('hits')
-
+   return 'Hello World!'
 
 port = os.getenv('VCAP_APP_PORT', '5000')
 if __name__ == "__main__":
