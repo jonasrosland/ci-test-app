@@ -1,6 +1,9 @@
 from flask import Flask
 from redis import Redis
 import os
+import urlparse
+import json
+
 
 app = Flask(__name__)
 rediscloud_service = json.loads(os.environ['VCAP_SERVICES'])['rediscloud'][0]
