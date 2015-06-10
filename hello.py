@@ -3,13 +3,15 @@ from redis import Redis
 import os
 
 app = Flask(__name__)
-#redis = Redis(host=os.environ['REDIS_HOST'], port=6379)
+rediscloud_service = json.loads(os.environ['VCAP_SERVICES'])['rediscloud'][0]
+credentials = rediscloud_service['credentials']
+r = redis.Redis(host=credentials['hostname'], port=credentials['port'], password=credentials['password'])
 
 @app.route('/')
 def hello():
-#   redis.incr('hits')
-   return 'Hello World!'
-#   return 'Hello World! I have been seen %s times.\n' % redis.get('hits')
+   r.incr('hits')
+#   return 'Hello World!'
+   return 'Hello World! I have been seen %s times.\n' % r.get('hits')
 
 
 port = os.getenv('VCAP_APP_PORT', '5000')
