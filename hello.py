@@ -1,0 +1,17 @@
+from flask import Flask
+from redis import Redis
+import os
+
+app = Flask(__name__)
+#redis = Redis(host=os.environ['REDIS_HOST'], port=6379)
+
+@app.route('/')
+def hello():
+#   redis.incr('hits')
+   return 'Hello World!'
+#   return 'Hello World! I have been seen %s times.\n' % redis.get('hits')
+
+
+port = os.getenv('VCAP_APP_PORT', '5000')
+if __name__ == "__main__":
+	app.run(host='0.0.0.0', port=int(port))
