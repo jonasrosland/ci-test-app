@@ -1,5 +1,5 @@
-from flask import Flask
-from redis import Redis
+import flask
+import redis
 import os
 import urlparse
 import json
