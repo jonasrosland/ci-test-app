@@ -5,7 +5,7 @@ import urlparse
 import json
 
 
-app = Flask(__name__)
+app = flask(__name__)
 rediscloud_service = json.loads(os.environ['VCAP_SERVICES'])['rediscloud'][0]
 credentials = rediscloud_service['credentials']
 r = redis.Redis(host=credentials['hostname'], port=credentials['port'], password=credentials['password'])
